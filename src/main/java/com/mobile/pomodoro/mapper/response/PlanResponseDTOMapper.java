@@ -2,27 +2,21 @@ package com.mobile.pomodoro.mapper.response;
 
 import com.mobile.pomodoro.dto.response.PlanResponseDTO.PlanResponseDTO;
 import com.mobile.pomodoro.entities.Plan;
+import com.mobile.pomodoro.entities.PlanTask;
 import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public class PlanResponseDTOMapper {
+@Mapper(componentModel = "spring")
+public abstract class PlanResponseDTOMapper {
 
-    // @Mapping(target = "planId", source = "plan.id")
-    // @Mapping(target = "planTitle", source = "plan.title")
-    // @Mapping(target = "tasks", source = "plan", qualifiedByName = "mapTasks")
-    // public abstract PlanResponseDTO mapToDTO(Plan plan);
+    @Mapping(target = "planId", source = "plan.planId")
+    @Mapping(target = "planTitle", source = "plan.title")
+    public abstract PlanResponseDTO mapToDTO(Plan plan);
 
-//    @Named("mapTasks")
-//    public List<PlanResponseDTO.TaskDTO> mapTasks(Plan plan) {
-//        return plan.getTasks().stream()
-//                .map(task -> PlanResponseDTO.TaskDTO.builder()
-//                        .taskTitle(task.getTitle())
-//                        .order(task.getOrder())
-//                        .eTask(task.getETask())
-//                        .duration(task.getDuration())
-//                        .build())
-//                .toList();
-//    }
+    @Mapping(target = "task_name", source = "planTask.task_name")
+    @Mapping(target = "duration", source = "planTask.duration")
+    @Mapping(target = "task_order", source = "planTask.task_order")
+    public abstract PlanResponseDTO.TaskDTO mapToDTO(PlanTask planTask);
+
 }
