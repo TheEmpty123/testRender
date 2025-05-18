@@ -11,12 +11,11 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PlanResponseDTO {
-    private Integer planId;
+    private Long planId;
     private String planTitle;
     private List<TaskDTO> steps;
+
     @Data
-    @Getter
-    @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
@@ -27,4 +26,3 @@ public class PlanResponseDTO {
         private double duration;
     }
 }
-
